@@ -1,0 +1,91 @@
+# --- Backend (Python / Flask) ---
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+__pycache__/
+*.py[cod]
+backend/.pytest_cache/
+backend/.mypy_cache/
+backend/.ruff_cache/
+backend/.tox/
+backend/.coverage
+backend/.coverage.*
+backend/htmlcov/
+backend/.env
+backend/venv/
+backend/.venv/
+backend/env/
+backend/.ipynb_checkpoints/
+*.egg-info/
+.agents/
+
+# SQLite database files
+backend/*.db
+backend/*.sqlite
+backend/*.sqlite3
+backend/*-journal
+backend/*-wal
+backend/*-shm
+
+# Model artifacts
+backend/fraud_model.json
+backend/data/
+backend/*.pkl
+
+# Reports and generated PDFs
+backend/reports/
+*.pdf
+
+# --- Frontend (React / Vite) ---
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.cache/
+frontend/.eslintcache
+frontend/coverage/
+frontend/*.tsbuildinfo
+
+# Build outputs
+frontend/build/
+frontend/.next/
+frontend/out/
+
+# --- Logs ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pip-log.txt
+*.pid
+*.pid.lock
+
+# --- OS / Editor (Windows optimized) ---
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+*.lnk
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Local configuration and secrets ---
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.local
+
+# --- Misc ---
+# Ignore uploaded or test emails except seed data
+backend/uploads/
+!backend/seed_data/
+!backend/seed_data/**
+
+# Local analysis and temporary output
+tmp/
+temp/
+graphify-out/

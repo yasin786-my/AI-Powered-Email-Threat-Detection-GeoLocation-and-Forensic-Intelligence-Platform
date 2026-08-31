@@ -1,0 +1,32 @@
+{
+  "email_001.eml": {
+    "label": 1,
+    "type": "phishing",
+    "description": "PayPal credential theft (paypa1-support.com typosquat)"
+  },
+  "email_002.eml": {
+    "label": 1,
+    "type": "phishing",
+    "description": "PayPal payment verification scam (same campaign infra)"
+  },
+  "email_003.eml": {
+    "label": 1,
+    "type": "phishing",
+    "description": "Fake PayPal billing / invoice failure"
+  },
+  "email_004.eml": {
+    "label": 1,
+    "type": "phishing",
+    "description": "Urgent overdue invoice / BEC-style payment fraud"
+  },
+  "email_005.eml": {
+    "label": 0,
+    "type": "legitimate",
+    "description": "Internal HR team-building announcement (SPF/DKIM/DMARC pass)"
+  },
+  "email_006.eml": {
+    "label": 0,
+    "type": "legitimate",
+    "description": "Retail newsletter via Amazon SES (SPF/DKIM/DMARC pass)"
+  }
+}

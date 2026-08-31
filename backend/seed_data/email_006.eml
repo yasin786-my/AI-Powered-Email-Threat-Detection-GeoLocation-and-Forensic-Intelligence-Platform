@@ -1,0 +1,39 @@
+Received: from a]36-72.smtp-out.us-west-2.amazonses.com (a]36-72.smtp-out.us-west-2.amazonses.com [52.10.30.5])
+    by mx.customer.com (Postfix) with ESMTPS id YZA567
+    for <jane@customer.com>; Fri, 19 Jan 2024 15:30:00 +0000 (UTC)
+Received: from email-composer.us-west-2.prod.internal (email-composer.us-west-2.prod.internal [10.200.1.45])
+    by ses-smtp-prod.us-west-2.amazonses.com with SMTP id ABC890;
+    Fri, 19 Jan 2024 15:30:00 +0000 (UTC)
+From: RetailMart Newsletter <newsletter@retailmart.com>
+To: jane@customer.com
+Reply-To: newsletter@retailmart.com
+Return-Path: <bounces+newsletter=retailmart.com@ses.retailmart.com>
+Subject: Your Weekly Deals — Up to 40% Off Winter Collection
+Date: Fri, 19 Jan 2024 15:30:00 +0000
+Message-ID: <newsletter-006@ses.retailmart.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+List-Unsubscribe: <https://retailmart.com/unsubscribe?id=jane>
+Authentication-Results: mx.customer.com;
+    spf=pass;
+    dkim=pass;
+    dmarc=pass
+
+Hi Jane,
+
+Here are this week's top deals at RetailMart:
+
+WINTER CLEARANCE SALE
+- Wool Blend Sweaters: $39.99 (was $69.99)
+- Insulated Jackets: $89.99 (was $149.99)
+- Fleece Blankets: $24.99 (was $39.99)
+
+Shop the full collection at https://retailmart.com/winter-sale
+
+FREE SHIPPING on orders over $50. Use code WINTER24 at checkout.
+
+Happy shopping!
+The RetailMart Team
+
+Unsubscribe: https://retailmart.com/unsubscribe?id=jane
+Privacy Policy: https://retailmart.com/privacy

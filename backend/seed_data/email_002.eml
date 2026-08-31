@@ -1,0 +1,33 @@
+Received: from smtp.paypa1-support.com (smtp.paypa1-support.com [185.220.101.4])
+    by mx.target.org (Postfix) with ESMTP id GHI789
+    for <user@target.org>; Tue, 16 Jan 2024 14:15:00 +0000 (UTC)
+Received: from internal (internal [10.0.0.5])
+    by smtp.paypa1-support.com (Postfix) with ESMTP id JKL012;
+    Tue, 16 Jan 2024 14:14:50 +0000 (UTC)
+From: PayPal Account Services <accounts@paypa1-support.com>
+To: user@target.org
+Reply-To: pp-account-help@gmail.com
+Return-Path: <no-reply@paypa1-support.com>
+Subject: Final Warning: Confirm Your Payment Method Now
+Date: Tue, 16 Jan 2024 14:15:00 +0000
+Message-ID: <campaign-a-002@paypa1-support.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Authentication-Results: mx.target.org;
+    spf=fail;
+    dkim=fail;
+    dmarc=fail
+
+Dear Customer,
+
+This is your final notice regarding your PayPal payment method verification.
+
+We have suspended your ability to send and receive payments until you update and confirm your payment details. This action is required immediately to avoid permanent restrictions.
+
+Please verify now: https://paypa1-support.com/update-payment?ref=92jd8
+Secure verification: https://paypal-billing-update.com/confirm
+
+WARNING: Failure to act within 12 hours will result in account closure. All funds will be held for 180 days per our security policy.
+
+Regards,
+PayPal Trust & Safety

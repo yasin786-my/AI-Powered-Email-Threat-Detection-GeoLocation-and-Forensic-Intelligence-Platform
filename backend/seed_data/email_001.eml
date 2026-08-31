@@ -1,0 +1,35 @@
+Received: from mail-out.paypa1-support.com (mail-out.paypa1-support.com [185.220.101.4])
+    by mx.victim.com (Postfix) with ESMTP id ABC123
+    for <victim@victim.com>; Mon, 15 Jan 2024 08:30:00 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+    by mail-out.paypa1-support.com (Postfix) with ESMTP id DEF456;
+    Mon, 15 Jan 2024 08:29:55 +0000 (UTC)
+From: PayPal Security <security@paypa1-support.com>
+To: victim@victim.com
+Reply-To: paypal-verify-now@protonmail.com
+Return-Path: <bounce@paypa1-support.com>
+Subject: URGENT: Your PayPal Account Has Been Limited - Action Required
+Date: Mon, 15 Jan 2024 08:30:00 +0000
+Message-ID: <campaign-a-001@paypa1-support.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Authentication-Results: mx.victim.com;
+    spf=fail (sender IP 185.220.101.4 not permitted);
+    dkim=fail;
+    dmarc=fail
+
+Dear Valued Customer,
+
+We have detected unusual activity on your PayPal account. Your account has been temporarily limited until you verify your identity.
+
+URGENT: You must take action immediately to restore your account access. Failure to verify within 24 hours will result in permanent account suspension.
+
+Click here to verify your identity: https://paypa1-support.com/verify?id=8x7k2m
+Alternate link: https://secure-paypal-verify.net/auth?token=abc123
+
+If you do not confirm your information within the deadline, your account will be locked and all pending transactions will be cancelled.
+
+Thank you,
+PayPal Security Team
+
+This is an automated security alert. Do not reply to this email.

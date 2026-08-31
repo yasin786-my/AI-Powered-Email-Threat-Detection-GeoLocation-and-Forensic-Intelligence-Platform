@@ -1,0 +1,36 @@
+Received: from mx.paypal-billing-secure.net (mx.paypal-billing-secure.net [185.220.101.4])
+    by mx.company.com (Postfix) with ESMTP id MNO345
+    for <employee@company.com>; Wed, 17 Jan 2024 09:45:00 +0000 (UTC)
+Received: from app-server (app-server [192.168.1.10])
+    by mx.paypal-billing-secure.net (Postfix) with ESMTP id PQR678;
+    Wed, 17 Jan 2024 09:44:45 +0000 (UTC)
+From: PayPal Billing <billing@paypal-billing-secure.net>
+To: employee@company.com
+Reply-To: billing-dept@paypal-billing-secure.net
+Return-Path: <bounces@paypal-billing-secure.net>
+Subject: Invoice #PP-2024-8891 — Payment Failed, Update Required
+Date: Wed, 17 Jan 2024 09:45:00 +0000
+Message-ID: <campaign-a-003@paypal-billing-secure.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Authentication-Results: mx.company.com;
+    spf=fail;
+    dkim=none;
+    dmarc=fail
+
+PAYMENT FAILURE NOTICE
+
+Invoice: PP-2024-8891
+Amount: $247.99
+Status: FAILED
+
+Your recent payment could not be processed. Your payment method on file has expired or was declined.
+
+To avoid service interruption, please update your billing information immediately:
+
+Update Payment: https://paypal-billing-secure.net/invoice/PP-2024-8891
+Alternative: https://paypa1-support.com/billing/update
+
+If payment is not received within 48 hours, your subscription will be terminated and late fees may apply.
+
+— PayPal Billing Department

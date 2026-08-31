@@ -1,0 +1,35 @@
+Received: from mailer.urgent-invoice-corp.com (mailer.urgent-invoice-corp.com [91.203.5.12])
+    by mx.business.com (Postfix) with ESMTP id STU901
+    for <cfo@business.com>; Thu, 18 Jan 2024 11:20:00 +0000 (UTC)
+From: Invoice Department <invoices@urgent-invoice-corp.com>
+To: cfo@business.com
+Reply-To: urgent-payment@yandex.com
+Return-Path: <bounces@urgent-invoice-corp.com>
+Subject: OVERDUE Invoice #INV-77421 — Immediate Payment Required
+Date: Thu, 18 Jan 2024 11:20:00 +0000
+Message-ID: <campaign-b-004@urgent-invoice-corp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Authentication-Results: mx.business.com;
+    spf=fail;
+    dkim=fail;
+    dmarc=fail
+
+URGENT PAYMENT REQUIRED
+
+Invoice Number: INV-77421
+Amount Due: $3,891.00
+Status: OVERDUE (30 days past due)
+
+Dear Chief Financial Officer,
+
+This is an automated notice that your company has an outstanding invoice that is now 30 days past due. Failure to remit payment immediately will result in legal action.
+
+Pay Now: https://urgent-invoice-corp.com/pay/INV-77421
+Wire Transfer Instructions: https://urgent-invoice-corp.com/wire-info
+
+Legal proceedings will be initiated within 72 hours if payment is not received. Contact our collections department immediately.
+
+Regards,
+Collections Department
+Urgent Invoice Corp.

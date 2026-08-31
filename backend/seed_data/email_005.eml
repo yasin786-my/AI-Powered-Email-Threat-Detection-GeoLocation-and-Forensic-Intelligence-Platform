@@ -1,0 +1,36 @@
+Received: from mail-eopbgr130045.outbound.protection.outlook.com (mail-eopbgr130045.outbound.protection.outlook.com [40.92.20.10])
+    by mx.yourcompany.com (Postfix) with ESMTPS id VWX234
+    for <john.smith@yourcompany.com>; Fri, 19 Jan 2024 09:00:00 +0000 (UTC)
+Received: from HE1PR0102MB2910.eurprd01.prod.exchangelabs.com ([fe80::a14b:c3d2:e5f6:7890%4]) by
+    HE1PR0102MB2911.eurprd01.prod.exchangelabs.com ([fe80::b25c:d4e3:f6a7:8901%6]) with
+    mapi id 15.20.7091.027; Fri, 19 Jan 2024 09:00:00 +0000
+From: HR Department <hr@yourcompany.com>
+To: john.smith@yourcompany.com
+Reply-To: hr@yourcompany.com
+Return-Path: <hr@yourcompany.com>
+Subject: Team Building Event — February 2024
+Date: Fri, 19 Jan 2024 09:00:00 +0000
+Message-ID: <legit-005@yourcompany.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Authentication-Results: mx.yourcompany.com;
+    spf=pass (sender IP is 40.92.20.10);
+    dkim=pass (signature was verified);
+    dmarc=pass
+
+Hi John,
+
+Hope you're having a great week! I wanted to let you know about our upcoming team building event.
+
+Date: Friday, February 9th, 2024
+Time: 2:00 PM - 5:00 PM
+Location: Conference Room B, 3rd Floor
+Activity: Team trivia and escape room challenge
+
+Please RSVP by January 26th so we can finalize catering. Let me know if you have any dietary requirements.
+
+Looking forward to seeing everyone there!
+
+Best regards,
+Sarah Chen
+HR Department
