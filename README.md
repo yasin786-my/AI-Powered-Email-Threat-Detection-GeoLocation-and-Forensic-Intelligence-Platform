@@ -1,8 +1,5 @@
 
 # AI-Powered Email Threat Detection, GeoLocation and Forensic Intelligence Platform
-
-**Problem Statement ID: 26106**
-
 ---
 
 ## 1. Overview
@@ -212,4 +209,3 @@ Frontend will run on: `http://localhost:5173`
 ## License
 
 This project is open for educational and research purposes.
-```
