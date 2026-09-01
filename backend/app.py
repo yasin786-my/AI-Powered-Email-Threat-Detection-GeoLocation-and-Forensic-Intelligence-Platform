@@ -230,17 +230,17 @@ def _heuristic_score(features):
     """Fallback scoring when ML model is not available."""
     score = 30  # base
     if not features.get("spf_pass"):
-        score += 15
+        score += 18
     if not features.get("dkim_pass"):
-        score += 10
+        score += 16
     if not features.get("dmarc_aligned"):
-        score += 10
+        score += 18
     if features.get("reply_to_mismatch"):
-        score += 10
+        score += 12
     if features.get("return_path_mismatch"):
         score += 5
     if features.get("sender_ip_is_vpn_hosting"):
-        score += 10
+        score += 22
     if features.get("urgency_word_count", 0) >= 3:
         score += 5
     if features.get("url_domain_mismatch", 0) > 0:

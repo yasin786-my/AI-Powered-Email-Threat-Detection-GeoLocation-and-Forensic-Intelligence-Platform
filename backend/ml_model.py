@@ -82,16 +82,19 @@ def predict_fraud(features):
         if active:
             contributions.append({"signal": label, "points": points})
 
-    add("SPF failed", 14, features.get("spf_result") in ("fail", "softfail", "neutral"))
-    add("DKIM failed", 12, features.get("dkim_result") == "fail")
-    add("DMARC failed", 14, features.get("dmarc_result") == "fail")
-    add("Reply-To mismatch", 18, features.get("reply_to_mismatch"))
+    # Authentication records that are absent, invalid, or failed are all
+    # evidence signals. The weights are deliberately interpretable so the
+    # report and dashboard can explain the final score to an analyst.
+    add("SPF missing or failed", 18, features.get("spf_result") in ("none", "fail", "softfail", "neutral"))
+    add("DKIM missing or failed", 16, features.get("dkim_result") in ("none", "fail", "softfail", "neutral"))
+    add("DMARC missing or failed", 18, features.get("dmarc_result") in ("none", "fail", "softfail", "neutral"))
+    add("Reply-To mismatch", 12, features.get("reply_to_mismatch"))
     add("Return-Path mismatch", 7, features.get("return_path_mismatch"))
     add("Suspicious sender domain", 16, features.get("suspicious_domain"))
     add("URL domain mismatch", min(20, 10 + 4 * features.get("url_domain_mismatch", 0)), features.get("url_domain_mismatch", 0) > 0)
     add("Urgency / credential language", min(16, 4 + 3 * features.get("urgency_word_count", 0)), features.get("urgency_word_count", 0) >= 2)
     add("New sender domain", 12, features.get("sender_domain_age_days", 9999) < 90)
-    add("Hosting or proxy sender IP", 10, features.get("sender_ip_is_vpn_hosting"))
+    add("Origin IP is VPN or hosting", 22, features.get("sender_ip_is_vpn_hosting"))
     add("Unexpected attachment", 4, features.get("has_attachment"))
 
     evidence_score = min(100, sum(item["points"] for item in contributions))

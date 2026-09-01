@@ -1,211 +1,83 @@
+# 26106 - AI-Powered Email Threat Detection, GeoLocation & Forensic Intelligence Platform
 
-# AI-Powered Email Threat Detection, GeoLocation and Forensic Intelligence Platform
----
+CyberForensix analyzes `.eml` files for phishing and fraud indicators. It combines email-header authentication, sender-domain checks, original public-relay attribution, explainable risk scoring, campaign correlation, analytics, and downloadable forensic PDF reports.
 
-## 1. Overview
+## Features
 
-Current email security tools primarily focus on filtering or blocking suspicious emails. However, organizations lack the ability to deeply investigate the origin of fraudulent emails, trace their path, and build forensic evidence.
+- Upload and inspect `.eml` messages.
+- Check SPF, DKIM, DMARC, Reply-To, Return-Path, URLs, urgency language, attachments, and suspicious sender domains.
+- Identify the oldest public IP from `Received` headers and enrich it with IP geolocation, hosting/VPN context, domain age, RDAP/WHOIS, and a relay path.
+- Produce an explainable fraud score from 0 to 100 with signal-by-signal contributions.
+- Browse case history, correlations, analytics, and export an evidence-focused PDF report.
 
-This platform solves that gap by combining:
+## Risk levels
 
-- AI-powered fraud detection
-- Deep email header forensics
-- IP geolocation and origin tracing
-- Graph-based campaign attribution
-- Auto-generated forensic reports with chain-of-custody
+| Fraud score | Classification |
+| --- | --- |
+| 0-19 | Safe |
+| 20-39 | Low risk |
+| 40-59 | Medium risk |
+| 60-79 | High risk |
+| 80-100 | Critical risk |
 
-It is designed as an **investigator’s cockpit** for SOC teams, institutional admins, fraud units, and law enforcement.
+The map identifies the original **public relay** from the current email's headers. It is network attribution, not proof of the sender's exact physical location.
 
----
+## Explainable scoring signals
 
-## 2. Key Features
+Scores are calibrated from observable evidence. The model output is used as a weak prior, while the following signals provide the analyst-visible contribution.
 
-- Real-time fraud risk scoring (0–100)
-- SPF, DKIM, and DMARC validation
-- Hop-by-hop geolocation trace map
-- VPN / Hosting provider detection
-- Campaign correlation using shared infrastructure
-- Plain-English AI explanation of findings
-- One-click forensic PDF report
-- SHA-256 evidence hash for chain-of-custody
-- PII masking and privacy controls
-- Case management view
+| Signal | Score impact |
+| --- | --- |
+| SPF is missing, failed, soft-failed, or neutral | +18 |
+| DKIM is missing, failed, soft-failed, or neutral | +16 |
+| DMARC is missing, failed, soft-failed, or neutral | +18 |
+| Original public relay IP is VPN/hosting | +22 |
+| Reply-To address differs from sender | +12 |
+| Return-Path differs from sender | +7 |
+| Suspicious/look-alike sender domain | +16 |
+| URL-domain mismatch | +10 to +20 |
+| Urgency or credential language | +4 to +16 |
+| Newly registered sender domain | +12 |
+| Unexpected attachment | +4 |
 
----
-
-## 3. Tech Stack
+## Run locally
 
 ### Backend
-- Flask (Python) – REST API
-- flask-cors
-- email + mail-parser – .eml parsing
-- XGBoost – Fraud classification
-- google-generativeai – Gemini explanation layer
-- NetworkX – Campaign graph correlation
-- WeasyPrint – PDF report generation
-- python-whois, dnspython – Domain intelligence
-- requests – IP geolocation (ip-api.com)
-- SQLite – Case storage
 
-### Frontend
-- React (Vite)
-- Tailwind CSS
-- Recharts – Charts
-- Leaflet.js – Geolocation trace map
-- vis.js / react-force-graph – Campaign graph
-
-### Datasets
-- Nazario Phishing Corpus
-- Enron Email Dataset
-- 6 handcrafted seed `.eml` files for reliable testing
-
----
-
-## 4. System Architecture
-
-```text
-.eml Upload
-    ↓
-Module 2: Header Parsing (SPF / DKIM / DMARC)
-    ↓
-Module 3: Geolocation + WHOIS
-    ↓
-Module 1: XGBoost Fraud Score + Gemini Explanation
-    ↓
-Module 4: NetworkX Campaign Correlation
-    ↓
-Module 6: Privacy (PII Masking + SHA-256 Hash)
-    ↓
-Module 5: Dashboard + Forensic PDF Report
-```
-
----
-
-## 5. Modules
-
-| # | Module                              | Technology          | Uses ML? |
-|---|-------------------------------------|---------------------|----------|
-| 1 | Fraud Detection Engine              | XGBoost + Gemini    | Yes      |
-| 2 | Header & Protocol Analysis          | Regex / Parsing     | No       |
-| 3 | Origin Traceability & Geolocation   | ip-api + WHOIS      | No       |
-| 4 | Identity Correlation & Attribution  | NetworkX            | No       |
-| 5 | Dashboard & Forensic Reporting      | React + WeasyPrint  | No       |
-| 6 | Privacy, Legal & Compliance         | SHA-256 + Masking   | No       |
-
-**Important:** Only Module 1 uses Machine Learning. Gemini is used only for generating plain-English explanations, not for making the fraud decision.
-
----
-
-## 6. Project Structure
-
-```text
-project-root/
-├── backend/
-│   ├── app.py
-│   ├── parser.py              # Module 2
-│   ├── geo_intel.py           # Module 3
-│   ├── ml_model.py            # Module 1
-│   ├── train_model.py
-│   ├── explain.py             # Gemini explanation
-│   ├── graph_correlate.py     # Module 4
-│   ├── privacy.py             # Module 6
-│   ├── report_gen.py          # Module 5
-│   ├── db.py
-│   ├── requirements.txt
-│   └── seed_data/
-│       ├── email_001.eml
-│       ├── email_002.eml
-│       ├── email_003.eml
-│       ├── email_004.eml
-│       ├── email_005.eml
-│       └── email_006.eml
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── UploadPanel.jsx
-│   │   │   ├── FraudScoreCard.jsx
-│   │   │   ├── HeaderTable.jsx
-│   │   │   ├── TraceMap.jsx
-│   │   │   ├── CampaignGraph.jsx
-│   │   │   ├── ExplanationPanel.jsx
-│   │   │   ├── PrivacyToggle.jsx
-│   │   │   ├── CaseList.jsx
-│   │   │   └── ExportButton.jsx
-│   │   └── ...
-│   └── package.json
-└── README.md
-```
-
----
-
-## 7. How to Run
-
-### Backend Setup
-
-```bash
+```powershell
 cd backend
-python -m venv venv
-venv\Scripts\activate          # Windows
+venv\Scripts\activate
 pip install -r requirements.txt
 python app.py
 ```
 
-Backend will run on: `http://localhost:5000`
+The API starts at `http://localhost:5000`.
 
-### Frontend Setup
+### Frontend
 
-```bash
+```powershell
 cd frontend
 npm install
 npm run dev
 ```
 
-Frontend will run on: `http://localhost:5173`
+Open the Vite URL shown in the terminal, usually `http://localhost:5173`.
 
----
+## Optional enrichment
 
-## 8. API Endpoints
+IP geolocation uses `ip-api.com`; reverse locality uses OpenStreetMap Nominatim; domain age uses RDAP with WHOIS fallback. These are best-effort enrichments and can be disabled using these environment variables:
 
-| Method | Endpoint                  | Description                     |
-|--------|---------------------------|---------------------------------|
-| POST   | `/api/analyze`            | Analyze uploaded .eml file      |
-| POST   | `/api/correlate`          | Get campaign correlation        |
-| GET    | `/api/report/<case_id>`   | Download forensic PDF report    |
-| GET    | `/api/cases`              | List all analyzed cases         |
+```text
+ENABLE_NETWORK_ENRICHMENT=0
+ENABLE_DOMAIN_AGE_ENRICHMENT=0
+ENABLE_WHOIS_ENRICHMENT=0
+```
 
----
+For Gemini-powered analyst explanations, paste a Gemini API key into the dashboard. The key stays in browser session storage and is sent only with the analysis request.
 
-## 9. Demo Flow
+## Project structure
 
-1. Enter Gemini API Key
-2. Upload `email_001.eml` → High fraud score + Trace Map
-3. Upload `email_002.eml` and `email_003.eml` → Campaign graph appears
-4. Upload legitimate email → Low score, stays isolated
-5. Click **Export Report** → Download forensic PDF with SHA-256 hash
-
----
-
-## 10. Key Design Decisions
-
-- **XGBoost** makes the actual fraud decision (deterministic and auditable)
-- **Gemini** only explains the result in plain English
-- VPN/Hosting IPs are explicitly flagged instead of giving false precision
-- Human-in-the-loop design (no automatic blocking)
-- SHA-256 hash included in every report for chain-of-custody
-- Modular architecture — easy to extend
-
----
-
-## 11. Future Scope
-
-- Integration with Google Workspace / Microsoft 365
-- Real-time IMAP monitoring
-- Multi-tenant support for institutions
-- Advanced threat intelligence feeds
-- Mobile-responsive analyst view
-
----
-
-## License
-
-This project is open for educational and research purposes.
+```text
+backend/   Flask API, parsing, scoring, geolocation, database, PDF generation
+frontend/  React + Vite investigation dashboard
+```
