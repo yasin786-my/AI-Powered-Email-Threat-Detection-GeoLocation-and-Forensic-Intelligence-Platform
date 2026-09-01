@@ -152,6 +152,62 @@ function Heatmap({ daily, tiers }) {
   )
 }
 
+function signalState(value, goodValues = ['pass']) {
+  if (goodValues.includes(value)) return 'pass'
+  if (value === 'none' || value == null || value === '') return 'unknown'
+  return 'fail'
+}
+
+function CurrentEmailSignals({ analysis }) {
+  const header = analysis?.header_analysis || {}
+  const geo = analysis?.geo_trace || {}
+  const auth = [
+    { label: 'SPF authentication', value: String(header.spf || 'none').toUpperCase(), state: signalState(header.spf) },
+    { label: 'DKIM signature', value: String(header.dkim || 'none').toUpperCase(), state: signalState(header.dkim) },
+    { label: 'DMARC alignment', value: String(header.dmarc || 'none').toUpperCase(), state: signalState(header.dmarc) },
+  ]
+  const evidence = [
+    { label: 'Reply-To alignment', value: header.reply_to_mismatch ? 'MISMATCH' : 'ALIGNED', state: header.reply_to_mismatch ? 'fail' : 'pass' },
+    { label: 'Origin network', value: geo.is_vpn_or_hosting ? 'VPN / HOSTING' : 'NO VPN FLAG', state: geo.is_vpn_or_hosting ? 'fail' : 'pass' },
+    { label: 'URLs found', value: String(header.num_urls || 0), state: header.url_domain_mismatch ? 'fail' : 'pass' },
+    { label: 'Urgency terms', value: String(header.urgency_word_count || 0), state: (header.urgency_word_count || 0) >= 2 ? 'fail' : 'pass' },
+    { label: 'Domain age', value: geo.domain_age_days != null ? `${Number(geo.domain_age_days).toLocaleString()} days` : 'UNAVAILABLE', state: geo.domain_age_days == null ? 'unknown' : geo.domain_age_days < 90 ? 'fail' : 'pass' },
+    { label: 'Attachments', value: header.has_attachment ? 'PRESENT' : 'NONE', state: header.has_attachment ? 'unknown' : 'pass' },
+  ]
+
+  return (
+    <Card title={<><Icon name="target" /> Current Email Security Posture</>} className="analytics-wide current-email-card">
+      <p className="current-email-caption">Live evidence from the selected email. Green means the control passed; red indicates evidence requiring review.</p>
+      <div className="email-signal-groups">
+        <div>
+          <p className="signal-group-label">Authentication controls</p>
+          <div className="email-signal-grid">
+            {auth.map(signal => <SignalTile key={signal.label} {...signal} />)}
+          </div>
+        </div>
+        <div>
+          <p className="signal-group-label">Message and infrastructure evidence</p>
+          <div className="email-signal-grid">
+            {evidence.map(signal => <SignalTile key={signal.label} {...signal} />)}
+          </div>
+        </div>
+      </div>
+    </Card>
+  )
+}
+
+function SignalTile({ label, value, state }) {
+  const stateLabel = state === 'pass' ? 'Passed' : state === 'fail' ? 'Review' : 'Unknown'
+  return (
+    <div className={`email-signal ${state}`}>
+      <span className="signal-state-dot" aria-hidden="true" />
+      <span className="signal-label">{label}</span>
+      <strong>{value}</strong>
+      <small>{stateLabel}</small>
+    </div>
+  )
+}
+
 function AnalyticsDashboard({ analysis, analytics }) {
   const contributions = Array.isArray(analysis?.risk_contributions) ? analysis.risk_contributions : []
   const tiers = analytics?.tier_distribution && typeof analytics.tier_distribution === 'object' && !Array.isArray(analytics.tier_distribution) ? analytics.tier_distribution : {}
@@ -176,6 +232,7 @@ function AnalyticsDashboard({ analysis, analytics }) {
 
   return (
     <div className="analytics-grid" id="analytics-dashboard">
+      {analysis && <CurrentEmailSignals analysis={analysis} />}
       {analysis && (
         <Card title={<><Icon name="alert" /> Flag Contribution</>} className="analytics-wide">
           {contributions.length ? (
