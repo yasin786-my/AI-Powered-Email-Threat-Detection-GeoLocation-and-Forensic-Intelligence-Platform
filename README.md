@@ -1,6 +1,6 @@
 # 26106 - AI-Powered Email Threat Detection, GeoLocation & Forensic Intelligence Platform
 
-CyberForensix analyzes `.eml` files for phishing and fraud indicators. It combines email-header authentication, sender-domain checks, original public-relay attribution, explainable risk scoring, campaign correlation, analytics, and downloadable forensic PDF reports.
+ AI-Powered Email Threat Detection, GeoLocation & Forensic Intelligence Platform analyzes `.eml` files for phishing and fraud indicators. It combines email-header authentication, sender-domain checks, original public-relay attribution, explainable risk scoring, campaign correlation, analytics, and downloadable forensic PDF reports.
 
 ## Features
 
